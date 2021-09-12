@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-	  <div class="container">
+	  <div class="container" v-if="state.username === null || state.username ==='' ">
 		  <div class="row justify-content-center align-items-center">
 			  <div class="col-md-4 shadow p-2">
-				    <form @submit.prevent="login">
+				    <form @submit.prevent="Login">
 						<h2 class="text-secondary">Login System</h2>
 						<div class="form-group my-2">
 							<label for="">Username</label>
@@ -19,7 +19,7 @@
 		  </div>
 	</div>
 
-		<div class="container">
+		<div class="container" v-else>
 		  <div class="row justify-content-center">
 			  <div class="col-md-6 shadow p-2">
 				  <div class="chat view">
@@ -43,7 +43,7 @@ export default {
   },
 
   setup(){
-	const InputUsername = ref("");
+	const inputUsername = ref("");
 	const state = reactive({
 		username : "",
 		messages : []
@@ -58,7 +58,7 @@ export default {
 
 
 	return {
-		InputUsername,
+		inputUsername,
 		Login,
 		state
 	}
