@@ -17,8 +17,11 @@
 					</form>
 			  </div>
 		  </div>
-		  <div class="row">
-			  <div class="col-md-6">
+	</div>
+
+		<div class="container">
+		  <div class="row justify-content-center">
+			  <div class="col-md-6 shadow p-2">
 				  <div class="chat view">
 					  <h1>Chat View</h1>
 				  </div>
