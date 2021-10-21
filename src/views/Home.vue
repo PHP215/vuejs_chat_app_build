@@ -47,9 +47,9 @@
 							</div>
 						</div>
 					</div>
-					<form action="#" class="typing-area">
+					<form action="#" @submit.prevent="sendMessage" class="typing-area">
 				<input type="text" class="incoming_id" name="incoming_id" value="" hidden>
-				<input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+				<input type="text" name="message" v-model="inputMessage" class="input-field" placeholder="Type a message here..." autocomplete="off">
 				<button><i style="font-size:30px;" class="fab fa-telegram-plane text-primary"></i></button>
 			</form>
 			
@@ -74,6 +74,8 @@ export default {
 
   setup(){
 	const inputUsername = ref("");
+  const inputMessage = ref("");
+  console.log(inputMessage)
 	const state = reactive({
 		username : "",
 		messages : []
@@ -86,11 +88,29 @@ export default {
 		}
 	}
 
+	const sendMessage = ()=>{
+		const messageRef = db.database().ref("messages");
+		if (inputMessage.value == null || inputMessage.value == "") {
+			return;
+    }
+
+		const message = {
+			content : inputMessage.value,
+      username : state.username
+    
+		}
+		
+		messageRef.push(message);
+		inputMessage.value = "";
+  }
+
 
 	return {
 		inputUsername,
+		inputMessage,
 		Login,
-		state
+		state,
+		sendMessage
 	}
   }
 }
