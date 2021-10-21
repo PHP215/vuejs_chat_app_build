@@ -35,9 +35,9 @@
 						</div>
 					</header>
 					<div class="chat-box">
-						<div class="chat outgoing">
+						<div class="chat outgoing" v-for="message in state.messages" :key="message.key">
 							<div class="details">
-								<p>Hello boss</p>
+								<p>{{message.content}}</p>
 							</div>
 						</div>
 						<div class="chat incoming">
@@ -103,6 +103,21 @@ export default {
 		messageRef.push(message);
 		inputMessage.value = "";
   }
+  onMounted(()=>{
+    const messageRef = db.database().ref('messages');
+    messageRef.on('value', snapshot =>{
+      const data = snapshot.val();
+      let messages = [];
+      Object.keys(data).forEach(key =>{
+        messages.push({
+          id : key,
+          username : data[key].username,
+          content : data[key].content
+        })
+      })
+      state.messages = messages;
+    })
+  })
 
 
 	return {
