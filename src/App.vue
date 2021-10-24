@@ -66,13 +66,15 @@
           console.log(register_state.errorMessage)
         }
         else{
-            const register = db.auth().createUserWithEmailAndPassword(email.value,password.value);
-            if (register) {
-              // console.log(db.auth.Error.code)
-              // console.log(Future.error)
-               register_state.successMessage = 'Registered Successfully!'
+          try {
+             db.auth().createUserWithEmailAndPassword(email.value,password.value);
+             register_state.successMessage = 'Registered Successfully!'
                 console.log(register_state.successMessage)
-            }
+          } catch (err) {
+            console.log(err.response.data.error.message)
+          }
+           
+           
         }
         
      }
