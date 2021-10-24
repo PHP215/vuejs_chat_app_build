@@ -1,9 +1,25 @@
 <template>
   <div id="nav">
-    <!-- <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> -->
+   <div class="container">
+		  <div class="row justify-content-center align-items-center">
+			  <div class="col-md-4 shadow p-2">
+				    <form @submit.prevent="Register">
+              <h2 class="text-secondary">Register</h2>
+              <div class="form-group my-2">
+                <label for="">Email</label>
+                <input type="text" v-model="email" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              </div>
+              <div class="form-group my-2">
+                <label for="">Password</label>
+                <input type="password" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                <button type="submit" class="my-2 btn btn-primary">Regisser</button>
+              </div>
+					</form>
+			  </div>
+		  </div>
+	</div>
   </div>
-  <router-view/>
+  <!-- <router-view/> -->
 </template>
 
 <style>
