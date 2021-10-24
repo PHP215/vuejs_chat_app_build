@@ -1,19 +1,29 @@
 <template>
   <div id="nav">
    <div class="container">
-		  <div class="row justify-content-center align-items-center">
+		  <div class="row mt-5 justify-content-center align-items-center">
 			  <div class="col-md-4 shadow p-2">
 				    <form @submit.prevent="Register">
-              <h2 class="text-secondary">Register</h2>
+              <h2 class="text-secondary text-center">Register</h2>
+              <!-- error message -->
+              <div class="error-message" v-if="register_state.errorMessage !== ''" :class="(register_state.errorMessage !== '' ? 'alert alert-danger' : '')">
+                {{register_state.errorMessage}}</div>
+                <!-- success message -->
+                <div class="success-message" v-if="register_state.successMessage !== ''" :class="(register_state.successMessage !== '' ? 'alert alert-success' : '')">
+                {{register_state.successMessage}}</div>
               <div class="form-group my-2">
                 <label for="">Email</label>
-                <input type="text" v-model="email" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="email"  v-model="email" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
               </div>
               <div class="form-group my-2">
                 <label for="">Password</label>
-                <input type="password" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                <button type="submit" class="my-2 btn btn-primary">Regisser</button>
+                <input type="password"  name="" v-model="password" id="" class="form-control" placeholder="" aria-describedby="helpId">
               </div>
+              <div class="form-group my-2">
+                <label for="">Confirm Password</label>
+                <input type="password"  name="" v-model="c_password" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              </div>
+               <button type="submit" class="my-2 btn btn-primary">Register</button>
 					</form>
 			  </div>
 		  </div>
@@ -21,26 +31,63 @@
   </div>
   <!-- <router-view/> -->
 </template>
+  <script>
+    import {reactive, onMounted, ref} from 'vue'
+    import db from './db'
+    export default {
+      name:'App',
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+    setup() {
+      const email = ref("");
+      const password = ref("");
+      const c_password = ref("");
+      // const successMessage = '';
+      const register_state = reactive({
+        errorMessage : "",
+        successMessage : ""
+      })
+      
+      // let errorMessage = '';
+      // const confirmPassword = ()=>{
+      //   if (this.password !== this.c_password) {
+      //     alert('nop')
+      //   }
+      // }
+     const Register = ()=>{
+      //  alert(password.value)
+        if(password.value == '' || c_password.value == '' ||  email.value == ''){
+          register_state.errorMessage = 'All fields are required!'
+          register_state.errorMessage = ''
+          console.log(register_state.errorMessage)
+        }
+         else if (password.value !== c_password.value) {
+          register_state.errorMessage = 'Password  do not match!'
+          register_state.errorMessage = ''
+          console.log(register_state.errorMessage)
+        }
+        else{
+            const register = db.auth().createUserWithEmailAndPassword(email.value,password.value);
+            if (register) {
+              // console.log(db.auth.Error.code)
+              // console.log(Future.error)
+               register_state.successMessage = 'Registered Successfully!'
+                console.log(register_state.successMessage)
+            }
+        }
+        
+     }
 
-#nav {
-  padding: 30px;
-}
+     return {
+       email,
+       password,
+       c_password,
+       Register,
+      //  successMessage,
+       register_state,
+     }
+    }
+    }
+  </script>
+<style scoped>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

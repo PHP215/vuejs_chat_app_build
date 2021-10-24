@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    name : 'Login',
+    name: 'Login',
 	props : ['Login']
 }
 </script>
