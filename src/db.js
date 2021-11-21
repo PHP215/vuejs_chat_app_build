@@ -1,15 +1,15 @@
 import firebase from 'firebase/app';
 import "firebase/database";
-import "firebase/auth";
 
 const config = {
 	// firebase api keys
-	apiKey: "AIzaSyBrArXPaj6SylCcouLCrwMAOX1LMkPaaRE",
-	authDomain: "vuechatapp-8e698.firebaseapp.com",
-	projectId: "vuechatapp-8e698",
-	storageBucket: "vuechatapp-8e698.appspot.com",
-	messagingSenderId: "1022117806690",
-	appId: "1:1022117806690:web:10252598a0111e8911873b"
+	apiKey: "AIzaSyAq13lReCfqFccu5fE80ayeRnXm3Kn214U",
+	authDomain: "vuechatapp-6cfdd.firebaseapp.com",
+	projectId: "vuechatapp-6cfdd",
+	storageBucket: "vuechatapp-6cfdd.appspot.com",
+	messagingSenderId: "794325730273",
+	appId: "1:794325730273:web:59404c9cc5c86cf65bc8a0",
+	measurementId: "G-QK6FKZL0DZ"
 
 }
 
