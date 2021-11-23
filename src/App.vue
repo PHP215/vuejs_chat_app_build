@@ -36,7 +36,6 @@
     import db from './db'
     export default {
       name:'App',
-
     setup() {
       const email = ref("");
       const password = ref("");
@@ -57,24 +56,23 @@
       //  alert(password.value)
         if(password.value == '' || c_password.value == '' ||  email.value == ''){
           register_state.errorMessage = 'All fields are required!'
-          register_state.errorMessage = ''
+          // register_state.errorMessage = ''
           console.log(register_state.errorMessage)
         }
          else if (password.value !== c_password.value) {
           register_state.errorMessage = 'Password  do not match!'
-          register_state.errorMessage = ''
+          // register_state.errorMessage = ''
           console.log(register_state.errorMessage)
         }
         else{
           try {
-             db.auth().createUserWithEmailAndPassword(email.value,password.value);
+            //  db.auth().createUserWithEmailAndPassword(email.value,password.value);
              register_state.successMessage = 'Registered Successfully!'
+             $redirect('/home')
                 console.log(register_state.successMessage)
           } catch (err) {
-            console.log(err.response.data.error.message)
-          }
-           
-           
+            console.log('error')
+          }        
         }
         
      }
