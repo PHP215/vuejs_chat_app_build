@@ -58,14 +58,15 @@
           console.log(register_state.errorMessage)
         }
         else{
-          try {
+        //   try {
             //  db.auth().createUserWithEmailAndPassword(email.value,password.value);
-             register_state.successMessage = 'Registered Successfully!'
-             window.location.href = '/views/Home'
+            //  register_state.successMessage = 'Registered Successfully!'
+            //  this.$route.router.push('Home')
+             window.location.href = '/login'
                 console.log(register_state.successMessage)
-          } catch (err) {
-            console.log('error')
-          }        
+        //   } catch (err) {
+        //     console.log('error')
+        //   }        
         }
         
      }
