@@ -150,6 +150,7 @@ body{
 .wrapper{
   background: #fff;
   max-width: 450px;
+  height: 80vh;
   width: 100%;
   border-radius: 16px;
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
