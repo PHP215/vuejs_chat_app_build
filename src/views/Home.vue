@@ -6,6 +6,7 @@
 	  <div class="container" v-if="state.username === null || state.username ==='' ">
 		  <div class="row justify-content-center align-items-center">
 			  <div class="col-md-4 shadow p-2">
+        <div class="alert alert-danger" v-if="state.error !== '' ">{{state.error}}</div>
 				    <form @submit.prevent="Login">
 						<h2 class="text-secondary">Login System</h2>
 						<div class="form-group my-2">
@@ -18,7 +19,7 @@
 							<button type="submit" class="my-2 btn btn-primary">Login</button>
 						</div>
 					</form>
-			  </div>
+			  </div> 
 		  </div>
 	</div>
 
@@ -76,9 +77,11 @@ export default {
 	const inputEmail = ref("");
 	const inputPassword = ref("");
   const inputMessage = ref("");
+  // const errorMessage = ''
   console.log(inputMessage)
 	const state = reactive({
 		username : "",
+    error : '',
 		messages : []
 	});
 
@@ -90,6 +93,7 @@ export default {
         inputEmail.value = ''
       }).
       catch((error)=>{
+        state.error = error.message
         console.log(error.message)
       })
 		}
@@ -131,6 +135,7 @@ export default {
 		inputEmail,
 		inputPassword,
 		inputMessage,
+    // errorMessage,
 		Login,
 		state,
 		sendMessage
@@ -155,10 +160,14 @@ body{
   background: #f7f7f7;
   padding: 0 10px;
 }
+.home > .container{
+  position: relative;
+  top: 100px;
+}
 .wrapper{
   background: #fff;
   max-width: 450px;
-  height: 80vh;
+  height: 60vh;
   width: 100%;
   border-radius: 16px;
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
