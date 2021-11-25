@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import "firebase/database";
-
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 const config = {
 	apiKey: "AIzaSyD7t8IMjT3-9wIR4KaC5RpGV6YxPFerjXY",
 	authDomain: "chatapp-9c626.firebaseapp.com",

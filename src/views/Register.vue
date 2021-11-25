@@ -32,6 +32,7 @@
 
 <script>
     import {reactive, onMounted, ref} from 'vue'
+    
     import db from '../db'
     export default {
       name:'Register',
@@ -39,6 +40,7 @@
       const email = ref("");
       const password = ref("");
       const c_password = ref("");
+      // const auth = getAuth();
       // const successMessage = '';
       const register_state = reactive({
         errorMessage : "",
@@ -58,15 +60,16 @@
           console.log(register_state.errorMessage)
         }
         else{
-        //   try {
-            //  db.auth().createUserWithEmailAndPassword(email.value,password.value);
+          
+          try {
+             db.auth().createUserWithEmailAndPassword(email.value,password.value);
             //  register_state.successMessage = 'Registered Successfully!'
             //  this.$route.router.push('Home')
-             window.location.href = '/login'
+            //  window.location.href = '/login'
                 console.log(register_state.successMessage)
-        //   } catch (err) {
-        //     console.log('error')
-        //   }        
+          } catch (err) {
+            console.log('error')
+          }        
         }
         
      }
