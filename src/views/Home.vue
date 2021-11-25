@@ -9,12 +9,12 @@
 				    <form @submit.prevent="Login">
 						<h2 class="text-secondary">Login System</h2>
 						<div class="form-group my-2">
-							<label for="">Username</label>
-							<input type="text" v-model="inputUsername" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+							<label for="">Email</label>
+							<input type="text" v-model="inputEmail" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
 						</div>
 						<div class="form-group my-2">
 							<label for="">Password</label>
-							<input type="password" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+							<input type="password" name="" id="" v-model="inputPassword" class="form-control" placeholder="" aria-describedby="helpId">
 							<button type="submit" class="my-2 btn btn-primary">Login</button>
 						</div>
 					</form>
@@ -73,7 +73,8 @@ export default {
   },
 
   setup(){
-	const inputUsername = ref("");
+	const inputEmail = ref("");
+	const inputPassword = ref("");
   const inputMessage = ref("");
   console.log(inputMessage)
 	const state = reactive({
@@ -82,9 +83,15 @@ export default {
 	});
 
 	const Login = ()=>{
-		if (inputUsername.value !== null || inputUsername.value !== "") {
-			state.username = inputUsername.value
-			inputUsername.value = ""
+		if (inputEmail.value !== '' && inputPassword.value !== "") {
+      db.auth().signInWithEmailAndPassword(inputEmail.value,inputPassword.value).
+      then((userCredential)=>{
+        state.username = inputEmail.value
+        inputEmail.value = ''
+      }).
+      catch((error)=>{
+        console.log(error.message)
+      })
 		}
 	}
 
@@ -121,7 +128,8 @@ export default {
 
 
 	return {
-		inputUsername,
+		inputEmail,
+		inputPassword,
 		inputMessage,
 		Login,
 		state,
