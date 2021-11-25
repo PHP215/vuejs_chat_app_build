@@ -50,26 +50,43 @@
      const Register = ()=>{
       //  alert(password.value)
         if(password.value == '' || c_password.value == '' ||  email.value == ''){
+          register_state.successMessage = ''
           register_state.errorMessage = 'All fields are required!'
-          // register_state.errorMessage = ''
           console.log(register_state.errorMessage)
         }
          else if (password.value !== c_password.value) {
+          register_state.successMessage = ''
           register_state.errorMessage = 'Password  do not match!'
-          // register_state.errorMessage = ''
           console.log(register_state.errorMessage)
         }
         else{
           
-          try {
-             db.auth().createUserWithEmailAndPassword(email.value,password.value);
-            //  register_state.successMessage = 'Registered Successfully!'
-            //  this.$route.router.push('Home')
-            //  window.location.href = '/login'
-                console.log(register_state.successMessage)
-          } catch (err) {
-            console.log('error')
-          }        
+          db.auth().createUserWithEmailAndPassword(email.value, password.value)
+            .then((userCredential) => {
+              // Signed in 
+              register_state.errorMessage = ''
+              register_state.successMessage = 'Registered Successfully!'
+              const user = userCredential.user;
+              setTimeout(()=>{
+                window.location.href = '/login'
+              },500)
+              // ...
+            })
+            .catch((error) => {
+              // console.log(error.code);
+              register_state.successMessage = ''
+              register_state.errorMessage = error.message;
+              // ..
+            });
+          // try {
+          //    db.auth().createUserWithEmailAndPassword(email.value,password.value);
+          //   //  register_state.successMessage = 'Registered Successfully!'
+          //   //  this.$route.router.push('Home')
+          //   //  window.location.href = '/login'
+          //       console.log(register_state.successMessage)
+          // } catch (err) {
+          //   console.log('error')
+          // }        
         }
         
      }
