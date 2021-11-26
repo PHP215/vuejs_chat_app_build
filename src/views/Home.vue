@@ -36,17 +36,12 @@
 						</div>
 					</header>
 					<div class="chat-box">
-						<div class="chat outgoing" v-for="message in state.messages" :key="message.key">
+						<div class="chat" v-for="message in state.messages" :key="message.key" :class="message.username == state.username ? 'outgoing' : 'incoming'">
 							<div class="details">
 								<p>{{message.content}}</p>
 							</div>
 						</div>
-						<div class="chat incoming">
-							<img src="../assets/logo.png" alt="">
-							<div class="details">
-								<p>a message</p>
-							</div>
-						</div>
+						
 					</div>
 					<form action="#" @submit.prevent="sendMessage" class="typing-area">
 				<input type="text" class="incoming_id" name="incoming_id" value="" hidden>
