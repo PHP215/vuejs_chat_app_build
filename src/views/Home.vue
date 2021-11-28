@@ -46,7 +46,7 @@
 					<form action="#" @submit.prevent="sendMessage" class="typing-area">
 				<input type="text" class="incoming_id" name="incoming_id" value="" hidden>
 				<input type="text" name="message" v-model="inputMessage" class="input-field" placeholder="Type a message here..." autocomplete="off">
-				<button><i style="font-size:30px;" class="fab fa-telegram-plane text-primary"></i></button>
+				<button @click="sendMessage"><i style="font-size:30px;" class="fab fa-telegram-plane text-primary"></i></button>
 			</form>
 			
 				</div>
