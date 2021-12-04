@@ -44,7 +44,7 @@
       const email = ref("");
       const password = ref("");
       const c_password = ref("");
-      const username = ref('')
+      const username = ref("")
       // const auth = getAuth();
       // const successMessage = '';
       const register_state = reactive({
@@ -58,6 +58,7 @@
           register_state.successMessage = ''
           register_state.errorMessage = 'All fields are required!'
           console.log(register_state.errorMessage)
+          console.log(username.value)
         }
          else if (password.value !== c_password.value) {
           register_state.successMessage = ''
@@ -70,13 +71,13 @@
             .then((userCredential) => {
               // Signed up 
               const user = userCredential.user; // current user
-              let db_ref = db().ref('') // database reference
-              let user_data = { 
-                email : email.value,
-                username : username.value
-              }
-              console.log(user_data)
-              db_ref.child('users/' + user.uid).set(user_data) // saving user data in users table
+              // const db_ref = db().ref(''); // database reference
+              // let user_data = { 
+              //   email : email.value,
+              //   username : username.value
+              // }
+              console.log(email.value)
+              db.child('users/' + user.uid).set(email.value,username.value) // saving user data in users table
               register_state.errorMessage = ''
               register_state.successMessage = 'Registered Successfully!'
               setTimeout(()=>{
