@@ -70,11 +70,12 @@
             .then((userCredential) => {
               // Signed up 
               const user = userCredential.user; // current user
-              let db_ref = db.ref() // database reference
+              let db_ref = db().ref('') // database reference
               let user_data = { 
-                email,
-                username
+                email : email.value,
+                username : username.value
               }
+              console.log(user_data)
               db_ref.child('users/' + user.uid).set(user_data) // saving user data in users table
               register_state.errorMessage = ''
               register_state.successMessage = 'Registered Successfully!'
