@@ -94,6 +94,7 @@ export default {
                             const data_fetched = snapshot.val();
                             // this.handleData(data);
                            state.username = data_fetched.username
+                           console.log(data_fetched.username)
                         });
                 // ...
               } else {
