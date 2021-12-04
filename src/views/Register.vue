@@ -75,6 +75,7 @@
                 email,
                 username
               }
+              db_ref.child('users/' + user.uid).set(user_data) // saving user data in users table
               register_state.errorMessage = ''
               register_state.successMessage = 'Registered Successfully!'
               setTimeout(()=>{
@@ -106,6 +107,7 @@
        password,
        c_password,
        Register,
+       username,
       //  successMessage,
        register_state,
      }
