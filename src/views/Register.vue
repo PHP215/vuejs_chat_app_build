@@ -68,10 +68,15 @@
           
           db.auth().createUserWithEmailAndPassword(email.value, password.value)
             .then((userCredential) => {
-              // Signed in 
+              // Signed up 
+              const user = userCredential.user; // current user
+              let db_ref = db.ref() // database reference
+              let user_data = { 
+                email,
+                username
+              }
               register_state.errorMessage = ''
               register_state.successMessage = 'Registered Successfully!'
-              const user = userCredential.user;
               setTimeout(()=>{
                 window.location.href = '/login'
               },500)
