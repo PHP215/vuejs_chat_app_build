@@ -40,6 +40,7 @@
 							<div class="details">
 								<p>{{message.content}}</p>
                 <small class="text-secondary"><i class="fas fa-clock text-primary"></i> {{message.time}} </small>
+                <small v-if="state.email !== message.email">{{message.username}}</small>
 							</div>
 						</div>
 						
@@ -78,6 +79,7 @@ export default {
 	const state = reactive({
 		username : "",
     error : '',
+    email : '',
 		messages : []
 	});
 
@@ -95,6 +97,7 @@ export default {
                             const data_fetched = snapshot.val();
                             // this.handleData(data);
                            state.username = data_fetched.username
+                           state.email = data_fetched.email
                            console.log(data_fetched.username)
                         });
                 // ...
@@ -119,7 +122,7 @@ export default {
 		if (inputMessage.value == null || inputMessage.value == "") {
 			return;
     }
-    let date = new date().getNow()
+    let date = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds()
 		const message = {
 			content : inputMessage.value,
       username : state.username,
