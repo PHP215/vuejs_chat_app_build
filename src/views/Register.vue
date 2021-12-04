@@ -72,12 +72,11 @@
               // Signed up 
               const user = userCredential.user; // current user
               // const db_ref = db().ref(''); // database reference
-              // let user_data = { 
-              //   email : email.value,
-              //   username : username.value
-              // }
-              console.log(email.value)
-              db.database().ref().child('users/' + user.uid).set(email.value,username.value) // saving user data in users table
+              let user_data = { 
+                email : email.value,
+                username : username.value
+              }
+              db.database().ref().child('users/' + user.uid).set(user_data) // saving user data in users table
               register_state.errorMessage = ''
               register_state.successMessage = 'Registered Successfully!'
               setTimeout(()=>{
