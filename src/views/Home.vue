@@ -119,11 +119,11 @@ export default {
 		if (inputMessage.value == null || inputMessage.value == "") {
 			return;
     }
-
+    let date = new date().getNow()
 		const message = {
 			content : inputMessage.value,
       username : state.username,
-      time : date.getNow()
+      time : date
 		}
 		
 		messageRef.push(message);
