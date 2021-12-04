@@ -76,12 +76,15 @@
                 email : email.value,
                 username : username.value
               }
-              db.database().ref().child('users/' + user.uid).set(user_data) // saving user data in users table
-              register_state.errorMessage = ''
-              register_state.successMessage = 'Registered Successfully!'
-              setTimeout(()=>{
-                window.location.href = '/login'
-              },500)
+              if (db.database().ref().child('users/' + user.uid).set(user_data) ) {
+                 // saving user data in users table
+                register_state.errorMessage = ''
+                register_state.successMessage = 'Registered Successfully!'
+                setTimeout(()=>{
+                  window.location.href = '/login'
+                },500)
+              }
+             
               // ...
             })
             .catch((error) => {
