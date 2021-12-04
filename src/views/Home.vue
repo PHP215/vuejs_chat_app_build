@@ -39,6 +39,7 @@
 						<div class="chat" v-for="message in state.messages" :key="message.key" :class="message.username == state.username ? 'outgoing' : 'incoming'">
 							<div class="details">
 								<p>{{message.content}}</p>
+                <small class="text-secondary"><i class="fas fa-clock text-primary"></i> {{message.time}} </small>
 							</div>
 						</div>
 						
@@ -121,8 +122,8 @@ export default {
 
 		const message = {
 			content : inputMessage.value,
-      username : state.username
-    
+      username : state.username,
+      time : date.getNow()
 		}
 		
 		messageRef.push(message);
@@ -137,7 +138,8 @@ export default {
         messages.push({
           id : key,
           username : data[key].username,
-          content : data[key].content
+          content : data[key].content,
+          time : data[key].time
         })
       })
       state.messages = messages;
