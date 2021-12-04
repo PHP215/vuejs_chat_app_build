@@ -85,15 +85,15 @@ export default {
       db.auth().signInWithEmailAndPassword(inputEmail.value,inputPassword.value).
       then((userCredential)=>{
         // console.log(userCredential)
+        // check if the user is logged in
             db.auth().onAuthStateChanged((user) => {
               if (user) {
                 var uid = user.uid;
-                console.log(uid)
                 const user_data = db.database().ref('users/' + uid);
                       user_data.on('value', (snapshot) => {
                             const data_fetched = snapshot.val();
                             // this.handleData(data);
-                            console.log(data_fetched)
+                           state.username = data_fetched.username
                         });
                 // ...
               } else {
