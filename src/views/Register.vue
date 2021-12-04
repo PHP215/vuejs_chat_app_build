@@ -15,6 +15,10 @@
                 <input type="email"  v-model="email" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
               </div>
               <div class="form-group my-2">
+                <label for="">Username</label>
+                <input type="text"  v-model="username" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              </div>
+              <div class="form-group my-2">
                 <label for="">Password</label>
                 <input type="password"  name="" v-model="password" id="" class="form-control" placeholder="" aria-describedby="helpId">
               </div>
@@ -40,6 +44,7 @@
       const email = ref("");
       const password = ref("");
       const c_password = ref("");
+      const username = ref('')
       // const auth = getAuth();
       // const successMessage = '';
       const register_state = reactive({
@@ -49,7 +54,7 @@
       
      const Register = ()=>{
       //  alert(password.value)
-        if(password.value == '' || c_password.value == '' ||  email.value == ''){
+        if(password.value == '' || c_password.value == '' ||  email.value == '' ||  username.value == ''){
           register_state.successMessage = ''
           register_state.errorMessage = 'All fields are required!'
           console.log(register_state.errorMessage)
