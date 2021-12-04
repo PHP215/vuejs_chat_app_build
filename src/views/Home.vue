@@ -40,7 +40,7 @@
 							<div class="details">
 								<p>{{message.content}}</p>
                 <small class="text-secondary"><i class="fas fa-clock text-primary"></i> {{message.time}} </small>
-                <small v-if="state.email !== message.email">{{message.username}}</small>
+                <small v-if="state.email !== message.email && message.username !== message.username">{{message.username}}</small>
 							</div>
 						</div>
 						
@@ -122,7 +122,7 @@ export default {
 		if (inputMessage.value == null || inputMessage.value == "") {
 			return;
     }
-    let date = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds()
+    let date = new Date().getHours() + ':' + new Date().getMinutes()
 		const message = {
 			content : inputMessage.value,
       username : state.username,
