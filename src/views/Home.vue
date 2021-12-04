@@ -39,8 +39,8 @@
 						<div class="chat" v-for="message in state.messages" :key="message.key" :class="message.username == state.username ? 'outgoing' : 'incoming'">
 							<div class="details">
 								<p>{{message.content}}</p>
-                <small class="text-secondary"><i class="fas fa-clock text-primary"></i> {{message.time}} </small><br>
-                <small v-if="state.email !== message.email && state.username !== message.username"> <span>{{ message.username}}</span></small>
+                <small class="text-secondary ml-2"><i class="fas fa-clock text-primary"></i> {{message.time}} </small>
+                <small class="mr-2" v-if="state.email !== message.email && state.username !== message.username"> <span>{{ message.username}}</span></small>
 							</div>
 						</div>
 						
