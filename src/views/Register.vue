@@ -77,7 +77,7 @@
               //   username : username.value
               // }
               console.log(email.value)
-              db.child('users/' + user.uid).set(email.value,username.value) // saving user data in users table
+              db.database().ref().child('users/' + user.uid).set(email.value,username.value) // saving user data in users table
               register_state.errorMessage = ''
               register_state.successMessage = 'Registered Successfully!'
               setTimeout(()=>{
