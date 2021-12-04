@@ -84,26 +84,24 @@ export default {
 		if (inputEmail.value !== '' && inputPassword.value !== "") {
       db.auth().signInWithEmailAndPassword(inputEmail.value,inputPassword.value).
       then((userCredential)=>{
-        console.log(userCredential)
-      // const user_data = db.database().ref('users/' + userCredential.uid);
-      //      user_data.on('value', (snapshot) => {
-      //           const data_fetched = snapshot.val();
-      //           // this.handleData(data);
-      //           console.log(data_fetched)
-      //       });
+        // console.log(userCredential)
             db.auth().onAuthStateChanged((user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    var uid = user.uid;
-    console.log(uid)
-    // ...
-  } else {
-    // User is signed out
-    console.log('fuck')
-    // ...
-  }
-});
+              if (user) {
+                var uid = user.uid;
+                console.log(uid)
+                const user_data = db.database().ref('users/' + uid);
+                      user_data.on('value', (snapshot) => {
+                            const data_fetched = snapshot.val();
+                            // this.handleData(data);
+                            console.log(data_fetched)
+                        });
+                // ...
+              } else {
+                // User is signed out
+                console.log('fuck')
+                // ...
+              }
+            });
         //   state.username = inputEmail.value
         // inputEmail.value = ''
       }).
