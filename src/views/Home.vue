@@ -181,12 +181,12 @@ body{
 }
 .home > .container{
   position: relative;
-  top: 100px;
+  top: 40px;
 }
 .wrapper{
   background: #fff;
   max-width: 450px;
-  height: 60vh;
+  height: auto;
   width: 100%;
   border-radius: 16px;
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
@@ -430,8 +430,9 @@ body{
 }
 .chat-box{
   position: relative;
-  min-height: 500px;
-  max-height: 500px;
+  height : 350px;
+  /* min-height: 500px; */
+  /* max-height: 500px; */
   overflow-y: auto;
   padding: 10px 30px 20px 30px;
   background: #f7f7f7;
